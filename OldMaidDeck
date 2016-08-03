@@ -1,0 +1,139 @@
+package extraFiles;
+import java.util.*;
+
+public class DeckAnish {
+
+	int DeckSize;
+	private final int TOTAL=52;
+	
+	private String oldmaid;
+	private String result;
+	private String result0;
+	private String suit;
+	private String addsuit;
+	private String face;
+	private String cardname;
+	private int cardnums;
+	
+	private ArrayList<Integer> deck = new ArrayList<Integer>();
+	
+	private int numofcards;
+	int a, b, c;
+	private int suit_value, face_value;
+	
+
+	public DeckAnish () {
+		for (numofcards=0; numofcards<TOTAL; numofcards++)
+			deck.add(numofcards); // making the 52 cards of a deck
+		
+	}
+	
+	public void shuffle () {
+		Random random = new Random ();
+		
+		for (b=0; b<52; b++)
+		{
+			c = random.nextInt(52); // replacing the cards in random index
+			a = deck.remove(b);
+			deck.add(c,a);
+		}
+	}
+	
+	public String dealcards() 
+	{
+		int i;
+		Random random = new Random ();
+		
+		i = random.nextInt(52);
+		cardnums = deck.remove(i);
+		
+		suit_value = cardnums/13;
+		face_value = cardnums % 13;
+		
+		switch (suit_value) { //assigning suit value to suits
+		case 0:
+			suit = "Clubs";
+			break;
+		case 1:
+			suit = "Spades";
+			break;
+		case 2:
+			suit = "Hearts";
+			break;
+		case 3:
+			suit = "Diamonds";
+			break;
+		case 4:
+			suit = "Old";
+			break;
+		default:
+			System.out.print("ERROR!");
+		}
+		
+		switch (face_value){ // assigning face values to faces
+		case 0:
+			face = "Ace";
+			break;
+		case 1:
+			face = "Two";
+			break;
+		case 2:
+			face = "Three";
+			break;
+		case 3:
+			face = "Four";
+			break;
+		case 4:
+			face = "Five";
+			break;
+		case 5:
+			face = "Six";
+			break;
+		case 6:
+			face = "Seven";
+			break;
+		case 7:
+			face = "Eight";
+			break;
+		case 8:
+			face = "Nine";
+			break;
+		case 9:
+			face = "Ten";
+			break;
+		case 10:
+			face = "Jack";
+			break;
+		case 11:
+			face = "Queen";
+			break;
+		case 12:
+			face = "King";
+			break;
+		case 17:
+			face = "Maid";
+			break;
+		default:
+			System.out.println("Old Maid");
+		}
+		
+		String fullcard = face + " of " + suit; // making full cards
+		return fullcard;
+	}
+	
+	public boolean isEmpty () //calls is empty
+	{
+		if (DeckSize == 0);
+		return(deck.isEmpty());
+	}
+	
+	public int size() //size
+	{
+		return(deck.size());
+	}
+	
+	public void removeOldMaid (int index)
+	{
+		deck.remove(11);
+	}
+}
